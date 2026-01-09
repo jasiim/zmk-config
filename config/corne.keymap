@@ -5,28 +5,64 @@
  */
 
 #include <behaviors.dtsi>
+#include <dt-bindings/zmk/backlight.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
 / {
+    combos {
+        compatible = "zmk,combos";
+
+        BLT {
+            bindings = <&bl BL_TOG>;
+            key-positions = <5 0>;
+        };
+    };
+
+    behaviors {
+        new_behavior: new_behavior {
+            compatible = "zmk,behavior-soft-off";
+            label = "NEW_BEHAVIOR";
+            #binding-cells = <0>;
+            hold-time-ms = <5000>;
+        };
+
+        lyer4: lyer4 {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LYER4";
+            bindings = <&kp>, <&tog>;
+
+            #binding-cells = <2>;
+            hold-trigger-key-positions = <0 0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38>;
+            tapping-term-ms = <1>;
+        };
+
+        leyer4: leyer4 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "LEYER4";
+            #binding-cells = <0>;
+            bindings = <&kp RIGHT_ALT>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             bindings = <
-&kp TAB         &kp Q  &kp W  &kp E     &kp R  &kp T        &kp Y    &kp U  &kp I      &kp O    &kp P     &kp BSPC
-&kp LEFT_SHIFT  &kp A  &kp S  &kp D     &kp F  &kp G        &kp H    &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
-&kp LCTRL       &kp Z  &kp X  &kp C     &kp V  &kp B        &kp N    &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                              &kp LGUI  &mo 1  &kp SPACE    &kp RET  &mo 2  &kp RALT
+&kp ESC         &kp Q  &kp W  &kp E     &kp R  &kp T        &kp Y    &kp U  &kp I               &kp O    &kp P     &kp BSPC
+&kp LEFT_SHIFT  &kp A  &kp S  &kp D     &kp F  &kp G        &kp H    &kp J  &kp K               &kp L    &kp SEMI  &kp SQT
+&kp LCTRL       &kp Z  &kp X  &kp C     &kp V  &kp B        &kp N    &kp M  &kp COMMA           &kp DOT  &kp FSLH  &kp ESC
+                              &kp LGUI  &mo 1  &kp SPACE    &kp RET  &mo 2  &lyer4 RIGHT_ALT 4
             >;
         };
 
         FIrst {
             bindings = <
-&kp TAB     &kp N1        &kp N2  &kp N3        &kp N4        &kp N5          &kp N6    &kp N7          &mmv MOVE_UP    &kp N9           &kp C_VOLUME_UP    &kp BSPC
+&kp TAB     &kp N1        &kp N2  &kp N3        &kp N4        &kp N5          &kp N6    &mkp LCLK       &mmv MOVE_UP    &mkp RCLK        &kp C_VOLUME_UP    &kp BSPC
 &bt BT_CLR  &kp NUMBER_4  &kp N5  &kp NUMBER_6  &bt BT_SEL 3  &bt BT_SEL 4    &kp LEFT  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &kp C_VOLUME_DOWN  &kp K_PLAY_PAUSE
-&kp LSHFT   &kp N7        &kp N8  &kp N9        &kp NUMBER_0  &trans          &trans    &trans          &trans          &trans           &kp K_MUTE         &trans
+&kp LSHFT   &kp N7        &kp N8  &kp N9        &kp NUMBER_0  &trans          &trans    &trans          &lt 3 LC(C)     &trans           &kp K_MUTE         &trans
                                   &kp LGUI      &trans        &kp SPACE       &kp RET   &trans          &kp RALT
             >;
         };
@@ -47,6 +83,15 @@
         };
 
         layer_3 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans    &trans  &trans  &trans
+            >;
+        };
+
+        layer_4 {
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
