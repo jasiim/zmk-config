@@ -24,6 +24,11 @@
             bindings = <&out OUT_TOG>;
             key-positions = <0 11>;
         };
+
+        ToUsB {
+            bindings = <&out OUT_USB>;
+            key-positions = <37 40 0 11>;
+        };
     };
 
     behaviors {
