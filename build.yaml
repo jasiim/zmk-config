@@ -21,5 +21,7 @@
 include:
   - board: sparkfun_pro_micro_rp2040
     shield: corne_left
+    compatible = "zmk,wired-split"
   - board: sparkfun_pro_micro_rp2040
     shield: corne_right
+    compatible = "zmk,wired-split"
