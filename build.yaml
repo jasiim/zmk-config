@@ -17,10 +17,6 @@
 #     cmake-args: -DCONFIG_ZMK_STUDIO=y
 #     artifact-name: corne_left_with_studio
 #
-
-#compatible = "zmk,wired-split";
-CONFIG_ZMK_BLE=y
-
 ---
 include:
   - board: sparkfun_pro_micro_rp2040
