@@ -19,7 +19,7 @@
 #
 
 #compatible = "zmk,wired-split";
-CONFIG_ZMK_BLE=y;
+CONFIG_ZMK_BLE=y
 
 ---
 include:
